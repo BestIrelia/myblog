@@ -1,5 +1,6 @@
 const express = require('express')
 const router =express.Router()
+const PostModel=require('../models/posts')
 
 const checkLogin = require('../middlewares/check').checkLogin
 
@@ -11,12 +12,43 @@ router.get('/',function (req,res,next) {
 
 // POST /posts/create 发表一篇文章
 router.post('/create',checkLogin,function (req,res,next) {
-    res.send('发表文章')
+    const author = req.session.user._id
+    const title = req.fields.title
+    const content = req.fields.content
+
+    // 校验参数
+    try {
+        if (!title.length) {
+            throw new Error('请填写标题')
+        }
+        if (!content.length) {
+            throw new Error('请填写内容')
+        }
+    } catch (e) {
+        req.flash('error', e.message)
+        return res.redirect('back')
+    }
+
+    let post = {
+        author: author,
+        title: title,
+        content: content
+    }
+
+    PostModel.create(post)
+        .then(function (result) {
+            // 此 post 是插入 mongodb 后的值，包含 _id
+            post = result.ops[0]
+            req.flash('success', '发表成功')
+            // 发表成功后跳转到该文章页
+            res.redirect(`/posts/${post._id}`)
+        })
+        .catch(next)
 })
 
 // GET /posts/create 发表文章页
 router.get('/create',checkLogin,function (req,res,next) {
-    res.send('发表文章页')
+    res.render('create')
 })
 
 // GET /posts/:postId 单独一篇的文章页

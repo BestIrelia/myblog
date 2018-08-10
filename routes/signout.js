@@ -5,7 +5,11 @@ const checkLogin = require('../middlewares/check').checkLogin
 
 // GET /signout 退出
 router.get('/', checkLogin, function (req, res, next) {
-    res.send('退出')
+    //清空session中用户信息
+    req.session.user=null
+    req.flash('success','退出成功')
+    //退出成功后舔砖到主页
+    res.redirect('/posts')
 })
 
 module.exports = router
