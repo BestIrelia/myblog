@@ -11,7 +11,7 @@ Post.plugin('contentToHtml',{
     },
     afterFindOne:function (post) {
         if(post){
-            post,content=marked(post.content)
+            post.content=marked(post.content)
         }
         return post
     }
