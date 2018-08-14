@@ -55,6 +55,13 @@ app.use(function (req,res,next) {
 
 routes(app)
 
+//error
+app.use(function (err,req,res,next) {
+    console.error(err)
+    req.flash('error',err.message)
+    res.redirect('/posts')
+})
+
 //监听端口，启动程序
 app.listen(config.port,function () {
     console.log(`${pkg.name} listening on port ${config.port} ${new Date()}`)
