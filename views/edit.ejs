@@ -16,10 +16,23 @@
             </div>
             <div class="field required">
                 <label for="">内容</label>
-                <textarea name="content" id="" cols="30" rows="15"><%= post.content%></textarea>
+                <!-- 加载编辑器的容器 -->
+                <script id="container" name="content" type="text/plain"></script>
             </div>
+            <input type="hidden" id="edit" value="<%= post.content%>">
             <input type="submit" class="ui button" value="发布">
         </form>
     </div>
 </div>
+<!-- 配置文件 -->
+<script type="text/javascript" src="/ueditor/ueditor.config.js"></script>
+<!-- 编辑器源码文件 -->
+<script type="text/javascript" src="/ueditor/ueditor.all.js"></script>
+<!-- 实例化编辑器 -->
+<script type="text/javascript">
+    let ue = UE.getEditor('container');
+    ue.ready(() => {
+        ue.setContent($('#edit').val())
+    });
+</script>
 <%-include('footer') %>

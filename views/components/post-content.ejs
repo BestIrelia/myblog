@@ -9,7 +9,7 @@
         <div class="eight wide column">
             <div class="ui segment">
                 <h3><a href="/posts/<%= post._id %>"><%= post.title %></a></h3>
-                <pre><%- post.content %></pre>
+                <div class="ueditor-content"><%- post.content %></div>
                 <div>
                     <span class="tag"><%=post.created_at %></span>
                     <span class="tag right">
@@ -31,3 +31,9 @@
         </div>
     </div>
 </div>
+<script src="/ueditor/ueditor.parse.js"></script>
+<script>
+    uParse('.ueditor-content', {
+        rootPath: '../ueditor'
+    })
+</script>

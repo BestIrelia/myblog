@@ -52,7 +52,7 @@ module.exports = {
             .populate({path:'author',model:'User'})
             .addCreatedAt()
             .addCommentsCount()
-            .contentToHtml()
+            // .contentToHtml()
             .exec()
     },
 
@@ -68,7 +68,7 @@ module.exports = {
             .sort({_id:-1})
             .addCreatedAt()
             .addCommentsCount()
-            .contentToHtml()
+            // .contentToHtml()
             .exec()
     },
 
