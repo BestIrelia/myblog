@@ -93,8 +93,8 @@ module.exports = {
     },
 
     //通过用户id和文章id删除一篇文章
-    delPostById:function delPostById(postId,author) {
-        return Post.deleteOne({author:author,_id:postId})
+    delPostById:function delPostById(postId) {
+        return Post.deleteOne({_id:postId})
             .exec()
             .then(function (res) {
                 //文章删除后，再删除该文章下的所有留言

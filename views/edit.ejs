@@ -30,7 +30,7 @@
 <script type="text/javascript" src="/ueditor/ueditor.all.js"></script>
 <!-- 实例化编辑器 -->
 <script type="text/javascript">
-    let ue = UE.getEditor('container');
+    let ue = UE.getEditor('container',{initialFrameHeight:400});
     ue.ready(() => {
         ue.setContent($('#edit').val())
     });
