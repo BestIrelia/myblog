@@ -20,7 +20,7 @@
                     <div class="ui active centered inline loader"></div>
                 </div>
                 <!-- 加载编辑器的容器 -->
-                <script id="container" name="content" type="text/plain"></script>
+                <script id="contentEdit" name="content" type="text/plain"></script>
             </div>
             <input type="hidden" id="edit" value="<%= post.content%>">
             <input type="submit" class="ui button" value="发布">
@@ -33,7 +33,7 @@
 <script type="text/javascript" src="/ueditor/ueditor.all.js"></script>
 <!-- 实例化编辑器 -->
 <script type="text/javascript">
-    let ue = UE.getEditor('container',{initialFrameHeight:400});
+    let ue = UE.getEditor('contentEdit',{initialFrameHeight:400,fontsize:12});
     ue.ready(() => {
         $('.ui-loader-container').remove();
         ue.setContent($('#edit').val());

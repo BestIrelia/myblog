@@ -7,7 +7,7 @@
             </a>
         </div>
         <div class="eight wide column">
-            <div class="ui segment piled">
+            <div class="ui segment <%= post.showContent && 'piled'%>">
                 <h3><a href="/posts/<%= post._id %>?showContent=true"><%= post.title %></a></h3>
                 <div class="ueditor-content <%= !post.showContent && 'line-clamp-2'%>"><%- post.content %></div>
                 <div>
