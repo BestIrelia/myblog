@@ -9,13 +9,16 @@
     </div>
 
     <div class="eight wide column">
-        <form action="" class="ui form segment" method="post">
+        <form action="" class="ui form segment piled" method="post">
             <div class="field required">
                 <label for="">标题</label>
                 <input type="text" name="title">
             </div>
             <div class="field required">
                 <label for="">内容</label>
+                <div class="ui-loader-container">
+                    <div class="ui active centered inline loader"></div>
+                </div>
                 <!-- 加载编辑器的容器 -->
                 <script id="container" name="content" type="text/plain"></script>
             </div>
@@ -30,5 +33,8 @@
 <!-- 实例化编辑器 -->
 <script type="text/javascript">
     let ue = UE.getEditor('container',{initialFrameHeight:400});
+    ue.ready(() => {
+        $('.ui-loader-container').remove();
+    });
 </script>
 <%- include('footer')%>
