@@ -63,8 +63,6 @@ router.get('/create',checkLogin,function (req,res,next) {
 // GET /posts/:postId 单独一篇的文章页
 router.get('/:postId',function (req,res,next) {
     const postId=req.params.postId
-    const showContent=req.query.showContent
-    console.log(showContent)
 
     Promise.all([
         PostModel.getPostById(postId),//获取文章信息
@@ -77,7 +75,7 @@ router.get('/:postId',function (req,res,next) {
             if(!post){
                 throw new Error('该文章不存在')
             }
-            post.showContent=showContent;
+            post.showContent=true;
             res.render('post',{
                 post:post,
                 comments: comments,
