@@ -33,7 +33,7 @@
 <script type="text/javascript" src="/ueditor/ueditor.all.js"></script>
 <!-- 实例化编辑器 -->
 <script type="text/javascript">
-    let ue = UE.getEditor('contentEdit',{initialFrameHeight:400,fontsize:12});
+    let ue = UE.getEditor('contentEdit',{initialFrameHeight:400});
     ue.ready(() => {
         $('.ui-loader-container').remove();
         ue.setContent($('#edit').val());
