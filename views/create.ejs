@@ -1,6 +1,6 @@
 <%- include('header')%>
 <div class="ui grid">
-    <div class="four wide column">
+    <div class="three wide column">
         <a href="/posts?author=<%= user._id %>" class="avatar avatar-link"
            data-title="<%= user.name%> | <%=({m:'男',f:'女',x:'保密'})[user.gender]%>"
            data-content="<%=user.bio%>">
@@ -8,7 +8,7 @@
         </a>
     </div>
 
-    <div class="eight wide column">
+    <div class="ten wide column">
         <form action="" class="ui form segment piled" method="post">
             <div class="field required">
                 <label for="">标题</label>
