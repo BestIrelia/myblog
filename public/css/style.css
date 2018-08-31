@@ -38,6 +38,15 @@ img{
     height:44px;
     overflow:hidden;
 }
+.line-clamp-2 p{
+    font-size: 12px!important;
+    line-height: 22px!important;
+}
+
+.line-clamp-2 span{
+    font-size: 12px!important;
+    line-height: 22px!important;
+}
 
 /* ---------- nav ---------- */
 
