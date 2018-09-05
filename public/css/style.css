@@ -39,6 +39,7 @@ img{
     overflow:hidden;
 }
 .line-clamp-2 p{
+    margin: 0!important;
     font-size: 12px!important;
     line-height: 22px!important;
 }
