@@ -1,3 +1,4 @@
+const path=require('path')
 const express = require('express')
 const router =express.Router()
 const PostModel=require('../models/posts')
@@ -24,6 +25,8 @@ router.post('/create',checkLogin,function (req,res,next) {
     const author = req.session.user._id
     const title = req.fields.title
     const content = req.fields.content
+    const type = req.fields.type
+    const markdown = req.fields.markdown
 
     // 校验参数
     try {
@@ -41,7 +44,9 @@ router.post('/create',checkLogin,function (req,res,next) {
     let post = {
         author: author,
         title: title,
-        content: content
+        content: content,
+        type: type,
+        markdown: markdown
     }
 
     PostModel.create(post)
@@ -58,6 +63,18 @@ router.post('/create',checkLogin,function (req,res,next) {
 // GET /posts/create 发表文章页
 router.get('/create',checkLogin,function (req,res,next) {
     res.render('create')
+})
+
+//markdown编辑器上传图片
+router.post('/upload',function (req,res,next) {
+    const url = req.files['editormd-image-file'].path.split(path.sep).pop();
+    let data = {
+        success: url ? 1 : 0,
+        message: url ? 'success' : 'fail',
+        url: '/img/' + url
+    }
+    res.json(data)
+
 })
 
 // GET /posts/:postId 单独一篇的文章页

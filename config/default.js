@@ -5,5 +5,5 @@ module.exports = {
         key: 'myblog',
         maxAge: 2592000000
     },
-    mongodb: 'mongodb://localhost:27017/myblog'
+    mongodb: process.env.NODE_ENV==='production' ? 'mongodb://172.17.0.3:27017/myblog' : 'mongodb://localhost:27017/myblog'
 }
