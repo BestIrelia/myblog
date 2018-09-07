@@ -9,7 +9,12 @@
         <div class="ten wide column">
             <div class="ui segment <%= post.showContent && 'piled'%>">
                 <h3><a href="/posts/<%= post._id %>"><%= post.title %></a></h3>
-                <div class="ueditor-content <%= !post.showContent && 'line-clamp-2'%>"><%- post.content %></div>
+                <div class="<%= post.type==='editormd' ? 'editormd-content' : 'ueditor-content' %> <%= !post.showContent && 'line-clamp-2'%> <%= (post.type==='editormd' && post.showContent) && 'hide' %>"><%- post.content %></div>
+                <% if(post.type==='editormd' && post.showContent){ %>
+                    <div id="editormdContent">
+                        <textarea name="" id="" cols="30" rows="10" class="hide"><%= post.markdown %></textarea>
+                    </div>
+                <% }%>
                 <div>
                     <span class="tag"><%=post.created_at %></span>
                     <span class="tag right">

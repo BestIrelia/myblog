@@ -16,27 +16,39 @@
             </div>
             <div class="field required">
                 <label for="">内容</label>
-                <div class="ui-loader-container">
-                    <div class="ui active centered inline loader"></div>
-                </div>
-                <!-- 加载编辑器的容器 -->
-                <script id="contentEdit" name="content" type="text/plain"></script>
+                <!--编辑器类别-->
+                <input type="hidden" name="type" value="<%= post.type %>">
+                <!--编辑器容器-->
+                <div id="editContainer"></div>
             </div>
-            <input type="hidden" id="edit" value="<%= post.content%>">
+            <input type="hidden" id="content" value="<%= post.content%>">
+            <input type="hidden" id="markdown" value="<%= post.markdown%>">
             <input type="submit" class="ui button" value="发布">
         </form>
     </div>
 </div>
-<!-- 配置文件 -->
+<!-- ueditor配置文件 -->
 <script type="text/javascript" src="/ueditor/ueditor.config.js"></script>
-<!-- 编辑器源码文件 -->
+<!-- ueditor编辑器源码文件 -->
 <script type="text/javascript" src="/ueditor/ueditor.all.js"></script>
-<!-- 实例化编辑器 -->
+
+<!--editormd-->
+<script src="/editormd/editormd.js"></script>
+
+<!--公共方法-->
+<script src="/js/common.js"></script>
+
+<!--初始化-->
 <script type="text/javascript">
-    let ue = UE.getEditor('contentEdit',{initialFrameHeight:400});
-    ue.ready(() => {
-        $('.ui-loader-container').remove();
-        ue.setContent($('#edit').val());
-    });
+    (function () {
+        let editor = $('input[name="type"]').val();
+        let content=$('#markdown').val() || $('#content').val();
+        editor==='editormd' ? initEditormd('editContainer',content) : initUeditor('editContainer',content);
+    }());
+//    let ue = UE.getEditor('contentEdit',{initialFrameHeight:400});
+//    ue.ready(() => {
+//        $('.ui-loader-container').remove();
+//        ue.setContent($('#edit').val());
+//    });
 </script>
 <%-include('footer') %>

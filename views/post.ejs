@@ -1,10 +1,27 @@
 <%- include('header')%>
 <%- include('components/post-content')%>
 <%- include('components/comments') %>
+<link rel="stylesheet" href="/editormd/css/editormd.preview.css">
+<script src="/ueditor/ueditor.parse.js"></script>
+<script src="/js/post-content.js"></script>
+<script src="/editormd/lib/marked.min.js"></script>
+<script src="/editormd/lib/prettify.min.js"></script>
+
+<script src="/editormd/lib/raphael.min.js"></script>
+<script src="/editormd/lib/underscore.min.js"></script>
+<script src="/editormd/lib/sequence-diagram.min.js"></script>
+<script src="/editormd/lib/flowchart.min.js"></script>
+<script src="/editormd/lib/jquery.flowchart.min.js"></script>
+<script src="/editormd/editormd.js"></script>
 <script>
-    uParse('.ueditor-content', {
-        rootPath: '../ueditor'
-    })
+    let testEditormdView2 = editormd.markdownToHTML("editormdContent", {
+        htmlDecode      : "style,script,iframe",  // you can filter tags decode
+        emoji           : true,
+        taskList        : true,
+        tex             : true,  // 默认不解析
+        flowChart       : true,  // 默认不解析
+        sequenceDiagram : true,  // 默认不解析
+    });
 </script>
 <%- include('footer')%>
 

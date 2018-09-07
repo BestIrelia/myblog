@@ -2,9 +2,6 @@
 <% posts.forEach(function (post) { %>
     <%- include('components/post-content',{post:post}) %>
 <% })%>
-<script>
-    uParse('.ueditor-content', {
-        rootPath: '../ueditor'
-    })
-</script>
+<script src="/ueditor/ueditor.parse.js"></script>
+<script src="/js/post-content.js"></script>
 <%- include('footer')%>

@@ -127,6 +127,7 @@ router.post('/:postId/edit',checkLogin,function (req,res,next) {
     const author=req.session.user._id
     const title=req.fields.title
     const content=req.fields.content
+    const markdown = req.fields.markdown
 
     //校验参数
     try {
@@ -149,7 +150,7 @@ router.post('/:postId/edit',checkLogin,function (req,res,next) {
             if (post.author._id.toString() !== author.toString()) {
                 throw new Error('没有权限')
             }
-            PostModel.updatePostById(postId, { title: title, content: content })
+            PostModel.updatePostById(postId, { title: title, content: content, markdown: markdown })
                 .then(function () {
                     req.flash('success', '编辑文章成功')
                     // 编辑成功后跳转到上一页
