@@ -31,7 +31,7 @@ function initEditormd(containerId,content) {
         width: "100%",
         height: 500,
         path : '/editormd/lib/',
-        markdown : content || '',
+        markdown : '',
         codeFold : true,
         //syncScrolling : false,
         saveHTMLToTextarea : true,    // 保存 HTML 到 Textarea
@@ -60,6 +60,7 @@ function initEditormd(containerId,content) {
             return ["undo", "redo", "|", "bold", "hr","|","italic", "hr","|","link","image", "||","search", "clear","watch", "fullscreen", "preview", "info", "help",]
         },
         onload : function() {
+            content && this.setMarkdown(content);
         }
     });
 }
